@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - Ryu Official  Marketplace</title>
+    <meta name="description" content="Ryu Official Marketplace menyediakan Hosting, Jasa Desain, dan Produk Digital terpercaya sejak 2020.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+    
+    <style>
+        /* Variabel CSS untuk Light dan Dark Mode */
+        :root {
+            --primary: #4a6cfa;
+            --secondary: #ff6b6b;
+            --accent: #4ecdc4;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --info: #0984e3;
+            
+            /* Light Mode Variables */
+            --bg-color: #f5f7ff;
+            --card-bg: #ffffff;
+            --text-color: #2d3436;
+            --text-secondary: #636e72;
+            --border-color: #dfe6e9;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            
+            --header-bg: linear-gradient(135deg, var(--primary), #6c5ce7);
+            --footer-bg: #2d3436;
+            --footer-text: #f8f9fa;
+            
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --bg-color: #1a1d21;
+            --card-bg: #2d3436;
+            --text-color: #f8f9fa;
+            --text-secondary: #b2bec3;
+            --border-color: #636e72;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            
+            --header-bg: linear-gradient(135deg, #2d3436, #1a1d21);
+            --footer-bg: #1a1d21;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: var(--transition);
+            padding-bottom: 70px; /* Space for bottom nav */
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        /* Header */
+        header {
+            background: var(--header-bg);
+            color: white;
+            padding: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Profile Section */
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+            border: 3px solid white;
+            box-shadow: var(--shadow);
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .verified-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            border: 2px solid white;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .profile-info h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .profile-info p {
+            opacity: 0.9;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        /* About Section */
+        .about-content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            white-space: pre-wrap; /* Memastikan line break di CONFIG.tentang berfungsi */
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: rgba(74, 108, 250, 0.1);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 12px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .skill-name {
+            font-weight: 600;
+        }
+
+        /* Contact Info */
+        .contact-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(74, 108, 250, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .contact-details {
+            flex: 1;
+            word-break: break-all;
+        }
+
+        .contact-type {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 3px;
+        }
+
+        .contact-value {
+            font-weight: 500;
+        }
+
+        .contact-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .contact-btn {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .contact-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Payment Methods */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .payment-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            background: rgba(74, 108, 250, 0.05);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .payment-method:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .payment-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .payment-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Social Media */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .social-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            background: rgba(74, 108, 250, 0.05);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .social-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .social-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .social-name {
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* Map Section */
+        .map-container {
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 250px;
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .map-address {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Contact Form (Mengganti form-group lama) */
+        .contact-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background: var(--card-bg);
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(74, 108, 250, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            padding: 12px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+        }
+
+        .submit-btn:hover {
+            background: #3a5be0;
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:disabled {
+            background: var(--text-secondary);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .submit-btn .btn-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+        
+        .submit-btn.sending .btn-text {
+            opacity: 0;
+        }
+
+        .submit-btn.sending .btn-loading {
+            opacity: 1;
+        }
+
+        .btn-loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-section p {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .footer-section a {
+            color: var(--footer-text);
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .social-icons-footer { /* Class diubah agar tidak bentrok */
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons-footer a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+            color: var(--footer-text);
+        }
+
+        .social-icons-footer a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Card Badge */
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--secondary);
+            color: white;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 90;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-item i {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        /* Verification Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.show {
+            display: block;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            animation: slideUp 0.3s;
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-desc {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .modal-btn {
+            padding: 8px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-btn:hover {
+            background: #3a5be0;
+        }
+
+        /* Success Popup (Mengganti notification lama) */
+        #success-popup {
+            transition: opacity 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #success-popup .popup-card {
+            transition: transform 0.3s ease;
+            transform: scale(0.9);
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        #success-popup.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #success-popup.show .popup-card {
+            transform: scale(1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-img {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .profile-stats {
+                justify-content: center;
+            }
+            
+            .skills-grid,
+            .payment-grid,
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .skills-grid,
+            .payment-grid,
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="profile">
+                <div class="profile-img" id="profileImageContainer">
+                    <img id="profileImage" alt="Foto Profil Ryu Official">
+                    <div class="verified-badge" id="verifiedBadge">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+                <div class="profile-info">
+                    <h1 id="profileName"></h1>
+                    <p id="profileTagline"></p>
+                    <div class="profile-stats" id="profileStats">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card about-section">
+            <h2 class="section-title">Tentang Kami</h2>
+            <div class="about-content">
+                <p id="aboutText"></p>
+            </div>
+        </div>
+
+        <div class="card skills-section">
+            <h2 class="section-title">Layanan & Keahlian</h2>
+            <div class="skills-grid" id="skillsGrid">
+                </div>
+        </div>
+
+        <div class="card payment-section">
+            <h2 class="section-title">Metode Pembayaran</h2>
+            <div class="payment-grid" id="paymentGrid">
+                </div>
+        </div>
+
+        <div class="card social-section">
+            <h2 class="section-title">Media Sosial</h2>
+            <div class="social-grid" id="socialGrid">
+                </div>
+        </div>
+
+        <div class="card contact-section">
+            <h2 class="section-title">Kontak & Lokasi</h2>
+            <div class="map-container">
+                <iframe id="mapFrame" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="map-address" id="mapAddress"></div>
+            <ul class="contact-list" id="contactList">
+                </ul>
+        </div>
+        
+        <div class="card contact-form-section">
+            <h2 class="section-title">Kirim Pesan Cepat</h2>
+            <form id="messageForm" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Nama Lengkap</label>
+                    <input type="text" id="name" class="form-control" placeholder="Masukkan nama lengkap" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="Masukkan alamat email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Pesan</label>
+                    <textarea id="message" class="form-control" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Kirim Pesan</span>
+                    <span class="btn-loading"><i class="fas fa-spinner"></i></span>
+                </button>
+            </form>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tentang Zass Desuta</h3>
+                    <p id="footerAbout"></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Link Cepat</h3>
+                    <a href="index.html">Beranda</a>
+                    <a href="products.html">Produk</a>
+                    <a href="keranjang.html">Keranjang</a>
+                    <a href="profil.html">Profil</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Hubungi Kami</h3>
+                    <p>Alamat: <span id="footerAddress"></span></p>
+                    <p>Email: <span id="footerEmail"></span></p>
+                    <p>WhatsApp: <span id="footerWA"></span></p>
+                    <div class="social-icons-footer" id="socialIconsFooter">
+                        </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; <span id="currentYear"></span> Zass Desuta Marketplace. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <div id="verificationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-certificate"></i>
+            </div>
+            <h3 class="modal-title">Akun Terverifikasi</h3>
+            <p class="modal-desc">Akun Ryu Official telah diverifikasi resmi. Kami menjamin produk yang original dan pelayanan yang terpercaya.</p>
+            <button class="modal-btn" onclick="document.getElementById('verificationModal').classList.remove('show')">Tutup</button>
+        </div>
+    </div>
+    
+    <div id="success-popup">
+        <div class="popup-card">
+            <div class="modal-icon"><i class="fas fa-check-circle"></i></div>
+            <h3 class="modal-title">Pesan Berhasil Dikirim!</h3>
+            <p class="modal-desc">Kami akan segera membalas pesan Anda melalui email atau WhatsApp.</p>
+        </div>
+    </div>
+
+    <div class="theme-toggle" id="themeToggle" role="button" tabindex="0" aria-label="Toggle tema gelap atau terang">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </a>
+        <a href="products.html" class="nav-item">
+            <i class="fas fa-cube"></i>
+            <span>Produk</span>
+        </a>
+        <a href="keranjang.html" class="nav-item">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Keranjang</span>
+        </a>
+        <a href="profil.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profil</span>
+        </a>
+    </div>
+
+    <script src="js/config.js"></script> 
+    <script>
+        // DOM Elements
+        const themeToggle = document.getElementById('themeToggle');
+        const messageForm = document.getElementById('messageForm');
+        const submitBtn = document.querySelector('.submit-btn');
+        const successPopup = document.getElementById('success-popup');
+        
+        const profileImage = document.getElementById('profileImage');
+        const profileImageContainer = document.getElementById('profileImageContainer');
+        const profileName = document.getElementById('profileName');
+        const profileTagline = document.getElementById('profileTagline');
+        const profileStats = document.getElementById('profileStats');
+        const aboutText = document.getElementById('aboutText');
+        const skillsGrid = document.getElementById('skillsGrid');
+        const paymentGrid = document.getElementById('paymentGrid');
+        const socialGrid = document.getElementById('socialGrid');
+        const mapFrame = document.getElementById('mapFrame');
+        const mapAddress = document.getElementById('mapAddress');
+        const contactList = document.getElementById('contactList');
+        const footerAbout = document.getElementById('footerAbout');
+        const footerAddress = document.getElementById('footerAddress');
+        const footerEmail = document.getElementById('footerEmail');
+        const footerWA = document.getElementById('footerWA');
+        const socialIconsFooter = document.getElementById('socialIconsFooter');
+        const currentYear = document.getElementById('currentYear');
+        const verificationModal = document.getElementById('verificationModal');
+
+        // --- 1. MEMUAT DATA CONFIG & RENDER ELEMEN ---
+        function loadConfigData() {
+            // Header & Profil
+            profileImage.src = CONFIG.profil;
+            profileName.innerText = CONFIG.nama;
+            profileTagline.innerText = CONFIG.tagline || "Marketplace Digital Terpercaya";
+            aboutText.innerText = CONFIG.tentang;
+            footerAbout.innerText = CONFIG.tentang.split('\n')[0]; // Ambil baris pertama untuk footer
+            currentYear.innerText = new Date().getFullYear();
+
+            // Stats
+            profileStats.innerHTML = `
+                <div class="stat">
+                    <i class="fas fa-box-open"></i> ${CONFIG.stats.products} Produk
+                </div>
+                <div class="stat">
+                    <i class="fas fa-chart-line"></i> ${CONFIG.stats.sales.toLocaleString('id-ID')}+ Terjual
+                </div>
+                <div class="stat">
+                    <i class="fas fa-star"></i> ${CONFIG.stats.rating} Bintang
+                </div>
+            `;
+            
+            // Skills
+            skillsGrid.innerHTML = '';
+            CONFIG.skills.forEach(skill => {
+                const skillElement = document.createElement('div');
+                skillElement.className = 'skill-item';
+                skillElement.innerHTML = `
+                    <i class="${skill.icon} skill-icon"></i>
+                    <span class="skill-name">${skill.name}</span>
+                `;
+                skillsGrid.appendChild(skillElement);
+            });
+
+            // Payments
+            paymentGrid.innerHTML = '';
+            CONFIG.payments.forEach(p => {
+                const isLink = p.name.toUpperCase() === 'QRIS' || p.value.startsWith('http');
+                const pElement = document.createElement(isLink ? 'a' : 'div');
+                pElement.className = 'payment-method';
+                if (isLink) {
+                    pElement.href = p.value;
+                    pElement.target = '_blank';
+                } else {
+                    pElement.onclick = () => alert(`Metode ${p.name}: Salin dan Bayar ke ${p.value}`);
+                }
+                
+                pElement.innerHTML = `
+                    <i class="${p.icon} payment-icon"></i>
+                    <span class="payment-name">${p.name}</span>
+                `;
+                paymentGrid.appendChild(pElement);
+            });
+
+            // Social Media Grid & Footer
+            const socialMap = {
+                whatsapp: { icon: 'fab fa-whatsapp', url: `https://wa.me/${CONFIG.sosial_media.whatsapp}`, name: 'WhatsApp' },
+                telegram: { icon: 'fab fa-telegram-plane', url: `https://t.me/${CONFIG.sosial_media.telegram}`, name: 'Telegram' },
+                youtube: { icon: 'fab fa-youtube', url: `https://youtube.com/@${CONFIG.sosial_media.youtube}`, name: 'YouTube' },
+                tiktok: { icon: 'fab fa-tiktok', url: `https://tiktok.com/@${CONFIG.sosial_media.tiktok}`, name: 'TikTok' },
+                instagram: { icon: 'fab fa-instagram', url: `https://instagram.com/${CONFIG.sosial_media.instagram}`, name: 'Instagram' },
+                email: { icon: 'fas fa-envelope', url: `mailto:${CONFIG.sosial_media.email}`, name: 'Email' }
+            };
+
+            socialGrid.innerHTML = '';
+            socialIconsFooter.innerHTML = '';
+            
+            for (const key in socialMap) {
+                if (CONFIG.sosial_media[key]) {
+                    const item = socialMap[key];
+                    
+                    // Grid Item
+                    const gridLink = document.createElement('a');
+                    gridLink.className = 'social-item';
+                    gridLink.href = item.url;
+                    gridLink.target = '_blank';
+                    gridLink.innerHTML = `<i class="${item.icon} social-icon" style="color: ${key === 'email' ? 'var(--info)' : 'var(--primary)'};"></i><span class="social-name">${item.name}</span>`;
+                    socialGrid.appendChild(gridLink);
+
+                    // Footer Item (hanya WA, Telegram, YT, IG, TikTok)
+                    if (key !== 'email') {
+                         const footerLink = document.createElement('a');
+                         footerLink.href = item.url;
+                         footerLink.target = '_blank';
+                         footerLink.innerHTML = `<i class="${item.icon}"></i>`;
+                         socialIconsFooter.appendChild(footerLink);
+                    }
+                }
+            }
+            
+            // Map & Kontak
+            mapAddress.innerText = CONFIG.alamat;
+            
+            // Map Link di iframe (menggunakan URL yang di-embed)
+            if (CONFIG.maps_link) {
+                // Asumsi maps_link adalah URL Google Maps biasa yang bisa di-embed
+                const embedUrl = CONFIG.maps_link.replace('/maps/', '/embed/').replace('?entry=yt', '');
+                mapFrame.src = embedUrl;
+            } else {
+                mapFrame.src = `https://maps.google.com/maps?q=${encodeURIComponent(CONFIG.alamat)}&output=embed`;
+            }
+
+            // Contact List
+            contactList.innerHTML = `
+                <li class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="contact-details">
+                        <div class="contact-type">Alamat</div>
+                        <div class="contact-value">${CONFIG.alamat}</div>
+                    </div>
+                </li>
+                <li class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div class="contact-details">
+                        <div class="contact-type">WhatsApp</div>
+                        <div class="contact-value">${CONFIG.sosial_media.whatsapp}</div>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="https://wa.me/628811147684${CONFIG.sosial_media.whatsapp}" target="_blank" class="contact-btn">Chat</a>
+                    </div>
+                </li>
+                <li class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-details">
+                        <div class="contact-type">Email</div>
+                        <div class="contact-value">${CONFIG.sosial_media.email}</div>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="mailto:${CONFIG.sosial_media.email}" class="contact-btn">Kirim</a>
+                    </div>
+                </li>
+            `;
+
+            // Footer Address
+            footerAddress.innerText = CONFIG.alamat;
+            footerEmail.innerText = CONFIG.sosial_media.email;
+            footerWA.innerText = CONFIG.sosial_media.whatsapp;
+        }
+        
+        // --- 2. THEME TOGGLE LOGIC ---
+        function setInitialTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            let initialTheme = 'light';
+            
+            if (savedTheme) {
+                initialTheme = savedTheme;
+            } else if (systemPrefersDark) {
+                initialTheme = 'dark';
+            }
+            
+            document.documentElement.setAttribute('data-theme', initialTheme);
+            updateThemeIcon(initialTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            themeToggle.innerHTML = theme === 'dark' ? 
+                '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        // --- 3. FORM SUBMISSION (Telegram API) ---
+        messageForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value,
+                timestamp: new Date().toLocaleString('id-ID')
+            };
+            
+            submitBtn.classList.add('sending');
+            
+            try {
+                if (!CONFIG.telegram_api || !CONFIG.telegram_api.bot || !CONFIG.telegram_api.chatid) {
+                     throw new Error('Konfigurasi Telegram API tidak ditemukan atau tidak lengkap.');
+                }
+
+                const telegramMessage = `
+📨 *Pesan Cepat dari ${CONFIG.nama} Website*
+        
+👤 *Nama:* ${formData.name}
+📧 *

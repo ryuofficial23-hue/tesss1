@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RYU OFFICIAL || Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <meta name="description" content="Temukan berbagai produk digital dengan harga pelajar.">
+    <meta name="keywords" content="Ryu Official, marketplace, jualan murah, gratis ongkir">
+    <meta property="og:title" content="Ryu Official || Marketplace">
+    <meta property="og:description" content="Temukan berbagai produk digital dengan harga pelajar.">
+    <meta property="og:image" content="https://preview-market.vercel.app/img/favicon.png">
+    <meta property="og:url" content="https://preview-market.vercel.app">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+
+    <style>
+        :root {
+            --primary: #4a6cfa;
+            --secondary: #ff6b6b;
+            --accent: #4ecdc4;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --info: #0984e3;
+            
+            /* Light Mode Variables */
+            --bg-color: #f5f7ff;
+            --card-bg: #ffffff;
+            --text-color: #2d3436;
+            --text-secondary: #636e72;
+            --border-color: #dfe6e9;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            
+            --header-bg: var(--card-bg); /* Change header to card background for modern look */
+            --footer-bg: #2d3436;
+            --footer-text: #f8f9fa;
+            
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --bg-color: #1a1d21;
+            --card-bg: #2d3436;
+            --text-color: #f8f9fa;
+            --text-secondary: #b2bec3;
+            --border-color: #636e72;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            
+            --header-bg: var(--card-bg);
+            --footer-bg: #1a1d21;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: var(--transition);
+            padding-bottom: 70px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        /* Header & Banner */
+        header {
+            background: var(--header-bg);
+            padding-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .banner {
+            position: relative;
+            height: 150px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        #bannerImage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .banner h2, .banner p {
+            position: absolute;
+            color: white;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 5px;
+            left: 10px;
+            z-index: 5;
+        }
+
+        .banner h2 {
+            top: 10px;
+            font-size: 1.5rem;
+        }
+
+        .banner p {
+            bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Profile Section */
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-top: -80px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--bg-color);
+            margin-right: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+            cursor: pointer;
+        }
+
+        #profilePic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .verified-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            border: 3px solid var(--bg-color);
+        }
+
+        .profile-info h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .profile-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: flex;
+            justify-content: space-around;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 15px 10px;
+            margin-top: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Products Section */
+        .product-category {
+            margin-bottom: 30px;
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 40px;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            margin-bottom: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-question {
+            padding: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+            padding: 0 15px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* Adjust as needed */
+            padding: 15px;
+        }
+
+        .faq-item.active .faq-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .faq-toggle i {
+            transition: transform 0.3s ease;
+        }
+
+        /* Testimonials */
+        .testimonials-container {
+            margin-top: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .testimonials {
+            position: relative;
+        }
+
+        .testimonial-slider {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .testimonial-slide {
+            flex: 0 0 100%;
+            min-width: 100%;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-avatar img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .testimonial-user-name {
+            font-weight: 600;
+        }
+
+        .testimonial-user-location {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .testimonial-rating {
+            margin-left: auto;
+            color: var(--warning);
+            font-size: 1.1rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-date {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-align: right;
+        }
+
+        .testimonial-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .testimonial-control {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            pointer-events: auto;
+        }
+        
+        .testimonial-control:hover {
+            background: var(--primary);
+        }
+
+        .testimonial-dots {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: var(--border-color);
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dot.active {
+            background: var(--primary);
+        }
+
+        /* Advantages */
+        .advantages {
+            margin-top: 40px;
+        }
+
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .advantage-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .advantage-icon {
+            font-size: 2rem;
+            color: var(--success);
+            margin-bottom: 10px;
+        }
+
+        .advantage-title {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .advantage-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-section a {
+            color: var(--footer-text);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* Modals */
+        .modal, .verification-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            animation: slideUp 0.3s;
+        }
+        
+        .verification-content {
+            background-color: var(--card-bg);
+            margin: 20% auto;
+            padding: 30px;
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        .close-modal {
+            color: var(--text-secondary);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .product-detail-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .product-detail-name {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .product-detail-price {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .variant-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .variant-option {
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .variant-option.selected {
+            border-color: var(--primary);
+            background: rgba(74, 108, 250, 0.1);
+        }
+
+        .add-to-cart-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .add-to-cart-btn:hover {
+            background: #00a382;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--success);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeIn 0.3s;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 900;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.15);
+            z-index: 90;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: 5px;
+            background: var(--secondary);
+            color: white;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .profile {
+                margin-top: -60px;
+            }
+            .profile-img {
+                width: 80px;
+                height: 80px;
+            }
+            .profile-info h1 {
+                font-size: 1.5rem;
+            }
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-section h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .social-icons {
+                justify-content: center;
+            }
+            .testimonial-slide {
+                margin-right: 0;
+            }
+            .testimonial-controls {
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="banner">
+                <img id="bannerImage" alt="Store Banner">
+                <h2 id="storeTitle"></h2>
+                <p id="greeting-text">Selamat berbelanja!</p>
+            </div>
+
+            <div class="profile">
+                <div class="profile-img" id="profileImage">
+                    <img id="profilePic" alt="Profile">
+                    <div class="verified-badge" id="verifiedBadge">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+                <div class="profile-info">
+                    <h1 id="profileName"></h1>
+                    <p>⭐ 4.9 (1,234 Reviews) | Free Fee Admin</p>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <div class="stat-item">
+                    <div class="stat-value">12.5K</div>
+                    <div class="stat-label">Total Terjual</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">8.2K</div>
+                    <div class="stat-label">Pelanggan</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">98%</div>
+                    <div class="stat-label">Kepuasan</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="products-container" id="productsContainer">
+            </div>
+
+        <div class="faq-section">
+            <h2 class="section-title">Pertanyaan Umum</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Bagaimana cara melakukan pemesanan?
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Pilih produk yang ingin dibeli, lalu klik pada produk untuk melihat detail dan varian. Setelah memilih varian, klik tombol "Tambah ke Keranjang".</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Berapa lama waktu pengiriman?
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Pengiriman dalam kota memakan waktu 1-2 hari, sedangkan luar kota 2-5 hari kerja tergantung daerah tujuan.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Apakah produk dijamin original?
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ya, semua produk yang kami jual 100% original dan bergaransi resmi. Kami memberikan garansi uang kembali jika produk terbukti tidak original.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Metode pembayaran apa saja yang diterima?
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Kami menerima transfer bank (BCA, Mandiri, BNI, BRI), e-wallet (Gopay, OVO, Dana, ShopeePay), serta QRIS.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonials-container">
+            <h2 class="section-title">Testimonial Pelanggan</h2>
+            <div class="testimonials">
+                <div class="testimonial-slider" id="testimonialSlider">
+                    <div class="testimonial-slide">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Ahmad R.">
+                            </div>
+                            <div class="testimonial-user">
+                                <div class="testimonial-user-name">Ahmad R.</div>
+                                <div class="testimonial-user-location">Bandung</div>
+                            </div>
+                            <div class="testimonial-rating">
+                                ⭐⭐⭐⭐⭐
+                            </div>
+                        </div>
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">"Pelayanan sangat cepat dan ramah. Produk original dan harga bersaing. Recommended banget!"</p>
+                            <div class="testimonial-date">12 Juni 2023</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Sinta W.">
+                            </div>
+                            <div class="testimonial-user">
+                                <div class="testimonial-user-name">Sinta W.</div>
+                                <div class="testimonial-user-location">Jakarta</div>
+                            </div>
+                            <div class="testimonial-rating">
+                                ⭐⭐⭐⭐⭐
+                            </div>
+                        </div>
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">"Barang sampai dengan cepat dan packing aman. Seller responsif dan helpful. Thanks Zass!"</p>
+                            <div class="testimonial-date">5 Juli 2023</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Rizky M.">
+                            </div>
+                            <div class="testimonial-user">
+                                <div class="testimonial-user-name">Rizky M.</div>
+                                <div class="testimonial-user-location">Surabaya</div>
+                            </div>
+                            <div class="testimonial-rating">
+                                ⭐⭐⭐⭐⭐
+                            </div>
+                        </div>
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">"Sudah berkali-kali belanja di sini dan selalu puas. Produk berkualitas dan garansi terpercaya."</p>
+                            <div class="testimonial-date">28 Mei 2023</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-controls">
+                    <div class="testimonial-control prev" id="testimonialPrev">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="testimonial-control next" id="testimonialNext">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="testimonial-dots">
+                    <div class="dot active" data-slide="0"></div>
+                    <div class="dot" data-slide="1"></div>
+                    <div class="dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="advantages">
+            <h2 class="section-title">Mengapa Memilih Kami?</h2>
+            <div class="advantage-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 class="advantage-title">Pengiriman Cepat</h3>
+                    <p class="advantage-desc">Pesanan diproses maksimal 1x24 jam dan dikirim dengan kurir terpercaya</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="advantage-title">Garansi Resmi</h3>
+                    <p class="advantage-desc">Semua produk bergaransi resmi dengan dukungan aftersales terbaik</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="advantage-title">Dukungan 24/7</h3>
+                    <p class="advantage-desc">Customer service siap membantu Anda kapan saja selama 24 jam</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="advantage-title">Terpercaya</h3>
+                    <p class="advantage-desc">Lebih dari 8.200 pelanggan telah mempercayakan kebutuhan mereka pada kami</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tentang Kami</h3>
+                    <p id="aboutText"></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <span id="alamat"></span></p>
+                    <p><i class="fas fa-phone"></i> <span id="wa"></span></p>
+                    <p><i class="fas fa-envelope"></i> <span id="email"></span></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Link Cepat</h3>
+                    <a href="index.html">Beranda</a>
+                    <a href="search.html">Cari</a>
+                    <a href="keranjang.html">Keranjang</a>
+                    <a href="profil.html">Profil</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Ikuti Kami</h3>
+                    <div class="social-icons">
+                        <a id="ytLink" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a id="tiktokLink" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a id="waLink" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a id="telegramLink" target="_blank"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p id="copyright"></p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="product-detail-header">
+                <div class="product-detail-icon" id="modalIcon"></div>
+                <div class="product-detail-title">
+                    <h3 class="product-detail-name" id="modalName"></h3>
+                    <div class="product-detail-price" id="modalPrice"></div>
+                </div>
+            </div>
+            <div class="product-detail-description" id="modalDescription"></div>
+            <div class="variant-selection" id="variantSelection">
+                </div>
+            <button class="add-to-cart-btn" id="addToCartBtn">Tambah ke Keranjang</button>
+        </div>
+    </div>
+
+    <div class="verification-modal" id="verificationModal">
+        <div class="verification-content">
+            <div class="verification-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="verification-title">Terverifikasi</h2>
+            <p class="verification-desc">Ryi Official adalah toko terverifikasi dengan reputasi yang sangat baik. Semua produk dijamin original dan bergaransi resmi.</p>
+            <button class="close-verification" id="closeVerification">Mengerti</button>
+        </div>
+    </div>
+
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </a>
+        <a href="search.html" class="nav-item">
+            <i class="fas fa-search"></i>
+            <span>Cari</span>
+        </a>
+        <a href="keranjang.html" class="nav-item">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Keranjang</span>
+            <span class="cart-badge" id="cartBadge">0</span>
+        </a>
+        <a href="profil.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profil</span>
+        </a>
+    </div>
+    
+    <div id="toastContainer"></div>
+
+    <script>
+        // =========================================================
+        // 1. DATA CONFIGURATION (CONFIG & productsData)
+        // =========================================================
+
+        const CONFIG = {
+            nama: "Ryu Official",
+            profil: "https://files.catbox.moe/vk4593.jpeg", 
+            banner: "https://files.catbox.moe/7or26t.png", 
+            tentang: "Ryu Official Store  adalah toko online terpercaya yang telah melayani ribuan pelanggan sejak 2020. Kami menyediakan berbagai produk digital untuk kebutuhan sehari-hari dengan kualitas terbaik dan harga terjangkau.\n\nKomitmen kami adalah memberikan pengalaman berbelanja yang menyenangkan dengan pelayanan terbaik, produk original, dan garansi resmi untuk semua produk yang kami jual.",
+            alamat: "Jl. Puger No. 123, Grobogan, Indonesia",
+            sosial_media: {
+              email: "ryuofficial23@gmail.com",
+              youtube: "RYU STORE",
+              tiktok: "𝕽𝖞𝖚 𝕺𝖋𝖋𝖎𝖈𝖎𝖆𝖑",
+              whatsapp: "628811147684",
+              telegram: ""
+            },
+            payment: {
+              dana: "628811147684",
+              gopay: "628811147684",
+              ovo: "628811147684",
+              qris: "https://linkqr.kamu.mom"
+            },
+            telegram_api: {
+              bot: "7096580561:AAHoq2WR0CzDTgoZdWFdXWx4UHJ92DCBOwg",
+              chatid: "8216633781"
+            },
+        };
+
+        const productsData = {
+            "Hosting": [
+              {
+                "id": 1,
+                "name": "Panel Pterodactyl Private",
+                "icon": "fas fa-server",
+                "description": "Panel Pterodactyl Private  hosting bot dengan performa stabil dan Server Private.",
+                "variants": [
+                  { "name": "1GB RAM", "price": 2000 },
+                  { "name": "2GB RAM", "price": 3000 },
+                  { "name": "3GB RAM", "price": 4000 },
+                  { "name": "4GB RAM", "price": 5000 },
+                  { "name": "5GB RAM", "price": 6000 },
+                  { "name": "6GB RAM", "price": 7000 },
+                  { "name": "7GB RAM", "price": 8000 },
+                  { "name": "8GB RAM", "price": 9000 },
+                  { "name": "9GB RAM", "price": 10000 },
+                  { "name": "10GB RAM", "price": 11000 },
+                  { "name": "Unlimited RAM", "price": 12000 }
+                ]
+              },
+                            {
+                "id": 1,
+                "name": "Panel Pterodactyl Public",
+                "icon": "fas fa-server",
+                "description": "Panel Pterodactyl Public hosting bot dengan performa stabil dan Server Lancar.",
+                "variants": [
+                  { "name": "1GB RAM", "price": 1000 },
+                  { "name": "2GB RAM", "price": 2000 },
+                  { "name": "3GB RAM", "price": 3000 },
+                  { "name": "4GB RAM", "price": 4000 },
+                  { "name": "5GB RAM", "price": 5000 },
+                  { "name": "6GB RAM", "price": 6000 },
+                  { "name": "7GB RAM", "price": 7000 },
+                  { "name": "8GB RAM", "price": 8000 },
+                  { "name": "9GB RAM", "price": 9000 },
+                  { "name": "10GB RAM", "price": 10000 },
+                  { "name": "Unlimited RAM", "price": 13000 }
+                  ]
+                            },
+              {
+                "id": 4,
+                "name": "Script Bot",
+                "icon": "fas fa-database",
+                "description": "Sc/Script dengan gitur terbaik dan terbanyak",
+                "variants": [
+                  { "name": "Script Rimuru md", "price": 50000 },
+                  { "name": "Scripth Xiten Bot Md", "price": 40000 },
+                  { "name": "Scrip Bug Justin V22", "price": 50000 },
+                                    { "name": "Scripth Bug Justin V23", "price": 60000 },
+                ]
+              },
+              {
+                "id": 5,
+                "name": "Web Hosting",
+                "icon": "fas fa-globe",
+                "description": "Hosting website dengan panel cPanel / DirectAdmin, cocok untuk pemula.",
+                "variants": [
+                  { "name": "Starter (1GB Storage)", "price": 15000 },
+                  { "name": "Basic (5GB Storage)", "price": 30000 },
+                  { "name": "Pro (10GB Storage)", "price": 50000 }
+                ]
+              }
+              ],
+               "Produk Desain": [
+                {
+                    id: 7,
+                    name: "Desain Banner",
+                    icon: "fas fa-image",
+                    description: "Jasa pembuatan banner untuk promosi usaha, media sosial, atau event.",
+                    variants: [
+                        { name: "Banner Sosmed", price: 15000 },
+                        { name: "Banner Event", price: 25000 },
+                        { name: "Banner Promosi", price: 30000 }
+                    ]
+                },
+                {
+                    id: 8,
+                    name: "Desain Poster",
+                    icon: "fas fa-scroll",
+                    description: "Jasa desain poster kreatif untuk kebutuhan bisnis, acara, atau publikasi.",
+                    variants: [
+                        { name: "Poster A4", price: 20000 },
+                        { name: "Poster A3", price: 35000 }
+                    ]
+                },
+                {
+                    id: 9,
+                    name: "UI/UX Design",
+                    icon: "fas fa-laptop-code",
+                    description: "Jasa desain UI/UX untuk website atau aplikasi dengan tampilan modern dan user-friendly.",
+                    variants: [
+                        { name: "Landing Page", price: 75000 },
+                        { name: "Full Website", price: 250000 },
+                    ]
+                },
+                {
+                    id: 10,
+                    name: "Desain Kartu Nama",
+                    icon: "fas fa-id-card",
+                    description: "Jasa desain kartu nama profesional untuk bisnis atau personal branding.",
+                    variants: [
+                        { name: "Basic", price: 10000 },
+                        { name: "Premium", price: 20000 }
+                    ]
+                }
+            ],
+            "Produk Digital": [
+                {
+                    id: 11,
+                    name: "E-Book",
+                    icon: "fas fa-book",
+                    description: "Koleksi e-book digital dengan berbagai topik menarik, mulai dari bisnis, programming, hingga hobi.",
+                    variants: [
+                        { name: "E-Book Bisnis", price: 15000 },
+                        { name: "E-Book Programming", price: 20000 },
+                        { name: "E-Book Random Pack", price: 10000 }
+                    ]
+                },
+                {
+                    id: 14,
+                    name: "Template Digital",
+                    icon: "fas fa-file-alt",
+                    description: "Template digital untuk desain, presentasi, website, dan media sosial.",
+                    variants: [
+                        { name: "Template PowerPoint", price: 10000 },
+                        { name: "Template Website", price: 30000 },
+                        { "name": "Template Sosmed", "price": 15000 }
+                    ]
+                },
+                {
+                    id: 15,
+                    name: "Akun Premium",
+                    icon: "fas fa-user-circle",
+                    description: "Berbagai akun premium dengan harga terjangkau, cocok untuk hiburan dan produktivitas.",
+                    variants: [
+                        { name: "Netflix Premium (1 Bulan)", price: 35000 },
+                        { name: "Spotify Premium (1 Bulan)", price: 25000 },
+                        { name: "Canva Pro (1 Bulan)", price: 20000 }
+                    ]
+                }
+            ]
+        };
+        
+        // =========================================================
+        // 2. JAVASCRIPT LOGIC
+        // =========================================================
+
+        // DOM Elements
+        const productsContainer = document.getElementById('productsContainer');
+        const productModal = document.getElementById('productModal');
+        const modalIcon = document.getElementById('modalIcon');
+        const modalName = document.getElementById('modalName');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalDescription = document.getElementById('modalDescription');
+        const variantSelection = document.getElementById('variantSelection');
+        const addToCartBtn = document.getElementById('addToCartBtn');
+        const closeModal = document.getElementById('closeModal');
+        const themeToggle = document.getElementById('themeToggle');
+        const cartBadge = document.getElementById('cartBadge');
+        const verifiedBadge = document.getElementById('verifiedBadge');
+        const verificationModal = document.getElementById('verificationModal');
+        const closeVerification = document.getElementById('closeVerification');
+        const testimonialSlider = document.getElementById('testimonialSlider');
+        const testimonialPrev = document.getElementById('testimonialPrev');
+        const testimonialNext = document.getElementById('testimonialNext');
+        const dots = document.querySelectorAll('.dot');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const toastContainer = document.getElementById('toastContainer'); // Tambahkan ini
+
+        // State Variables
+        let currentSlide = 0;
+        let selectedProduct = null;
+        let selectedVariantIndex = 0; // Ubah nama variabel untuk menghindari kebingungan
+
+        // --- Helper Functions ---
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <span>${message}</span>
+            `;
+            
+            // Mengganti penempatan agar tidak bertabrakan dengan bottom-nav
+            if (document.getElementById('toastContainer')) {
+                document.getElementById('toastContainer').appendChild(toast);
+            } else {
+                document.body.appendChild(toast);
+            }
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Initialize Config
+        function initConfig() {
+            document.getElementById("bannerImage").src = CONFIG.banner;
+            document.getElementById("storeTitle").innerText = CONFIG.nama + " || Marketplace";
+            document.getElementById("profilePic").src = CONFIG.profil;
+            document.getElementById("profileName").innerHTML = CONFIG.nama + ' <i class="fas fa-check-circle" style="color: var(--primary);"></i>';
+            document.getElementById("aboutText").innerText = CONFIG.tentang;
+            document.getElementById("alamat").innerText = CONFIG.alamat;
+            document.getElementById("wa").innerText = CONFIG.sosial_media.whatsapp;
+            document.getElementById("email").innerText = CONFIG.sosial_media.email;
+            document.getElementById("ytLink").href = "https://youtube.com/" + CONFIG.sosial_media.youtube;
+            document.getElementById("tiktokLink").href = "https://tiktok.com/@" + CONFIG.sosial_media.tiktok;
+            document.getElementById("waLink").href = "https://wa.me/" + CONFIG.sosial_media.whatsapp;
+            document.getElementById("telegramLink").href = "https://t.me/" + CONFIG.sosial_media.telegram;
+            document.getElementById("copyright").innerText =
+              `© ${new Date().getFullYear()} ${CONFIG.nama}. All Rights Reserved.`;
+        }
+        
+        // Render products by category
+        function renderProducts() {
+            let productsHTML = '';
+            
+            for (const category in productsData) {
+                productsHTML += `
+                    <div class="product-category">
+                        <h2 class="category-title">${category}</h2>
+                        <div class="products-grid">
+                            ${productsData[category].map(product => `
+                                <div class="product-card" data-id="${product.id}">
+                                    <div class="product-icon">
+                                        <i class="${product.icon}"></i>
+                                    </div>
+                                    <h3 class="product-name">${product.name}</h3>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            productsContainer.innerHTML = productsHTML;
+            // Re-setup listener after rendering
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const productId = parseInt(card.getAttribute('data-id'));
+                    openProductModal(productId);
+                });
+            });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Close modal
+            closeModal.addEventListener('click', closeProductModal);
+
+            // Theme toggle
+            themeToggle.addEventListener('click', toggleTheme);
+
+            // Add to cart
+            addToCartBtn.addEventListener('click', addToCart);
+
+            // Verification badge
+            verifiedBadge.addEventListener('click', () => {
+                verificationModal.style.display = 'block';
+            });
+
+            // Close verification modal
+            closeVerification.addEventListener('click', () => {
+                verificationModal.style.display = 'none';
+            });
+
+            // Testimonial controls
+            testimonialPrev.addEventListener('click', () => {
+                navigateTestimonial(-1);
+            });
+
+            testimonialNext.addEventListener('click', () => {
+                navigateTestimonial(1);
+            });
+
+            // Testimonial dots
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const slideIndex = parseInt(dot.getAttribute('data-slide'));
+                    goToTestimonial(slideIndex);
+                });
+            });
+
+            // FAQ toggles
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+        }
+
+        // Open product modal
+        function openProductModal(productId) {
+            // Find product by ID
+            selectedProduct = null;
+            for (const category in productsData) {
+                const product = productsData[category].find(p => p.id === productId);
+                if (product) {
+                    selectedProduct = product;
+                    break;
+                }
+            }
+
+            if (!selectedProduct) return;
+
+            // Update modal content
+            modalIcon.innerHTML = `<i class="${selectedProduct.icon}"></i>`;
+            modalName.textContent = selectedProduct.name;
+            
+            // Set default price
+            const defaultPrice = selectedProduct.variants[0] ? selectedProduct.variants[0].price : 0;
+            modalPrice.textContent = `Rp ${defaultPrice.toLocaleString('id-ID')}`;
+            modalDescription.textContent = selectedProduct.description;
+
+            // Render variants
+            variantSelection.innerHTML = `
+                <h4 class="variant-title">Pilih Varian:</h4>
+                <div class="variant-options">
+                    ${selectedProduct.variants.map((variant, index) => `
+                        <div class="variant-option ${index === 0 ? 'selected' : ''}" data-index="${index}">
+                            <div class="variant-name">${variant.name}</div>
+                            <div class="variant-price">Rp ${variant.price.toLocaleString('id-ID')}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            // Set first variant as selected
+            selectedVariantIndex = 0;
+
+            // Add event listeners to variant options
+            document.querySelectorAll('.variant-option').forEach(option => {
+                option.addEventListener('click', (e) => {
+                    // Remove selected class from all options
+                    document.querySelectorAll('.variant-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    e.currentTarget.classList.add('selected');
+                    
+                    // Update selected variant
+                    selectedVariantIndex = parseInt(e.currentTarget.getAttribute('data-index'));
+                    
+                    // Update price
+                    const newPrice = selectedProduct.variants[selectedVariantIndex].price;
+                    modalPrice.textContent = `Rp ${newPrice.toLocaleString('id-ID')}`;
+                });
+            });
+
+            // Show modal
+            productModal.style.display = 'block';
+        }
+
+        // Close product modal
+        function closeProductModal() {
+            productModal.style.display = 'none';
+            selectedProduct = null;
+            selectedVariantIndex = 0;
+        }
+
+        // Add to cart
+        function addToCart() {
+            if (!selectedProduct) return;
+
+            const variant = selectedProduct.variants[selectedVariantIndex];
+            
+            // Harus memuat ulang cart dari localStorage setiap kali menambah, 
+            // agar update keranjang dari tab lain juga terbaca
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Check if product already in cart
+            const existingItemIndex = cart.findIndex(item => 
+                item.productId === selectedProduct.id && item.variantName === variant.name
+            );
+
+            if (existingItemIndex >= 0) {
+                // Update quantity
+                cart[existingItemIndex].quantity += 1;
+            } else {
+                // Add new item
+                cart.push({
+                    productId: selectedProduct.id,
+                    productName: selectedProduct.name,
+                    variantName: variant.name,
+                    price: variant.price,
+                    quantity: 1,
+                    icon: selectedProduct.icon
+                });
+            }
+
+            // Save to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Update cart badge
+            updateCartBadge();
+            
+            // Show success message
+            showToast(`${selectedProduct.name} (${variant.name}) ditambahkan ke keranjang`);
+            
+            // Close modal
+            closeProductModal();
+        }
+
+        // Update cart badge
+        function updateCartBadge() {
+            // Memuat ulang cart dari localStorage agar sinkron dengan keranjang.html
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartBadge.textContent = totalItems;
+        }
+
+        // Toggle theme
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Update icon
+            themeToggle.innerHTML = newTheme === 'dark' ? 
+                '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+
+        // Navigate testimonial
+        function navigateTestimonial(direction) {
+            const totalSlides = document.querySelectorAll('.testimonial-slide').length;
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            goToTestimonial(currentSlide);
+        }
+
+        // Go to specific testimonial
+        function goToTestimonial(slideIndex) {
+            // Pastikan testimonialSlider ada sebelum mencoba mengakses clientWidth
+            if (!testimonialSlider) return; 
+            
+            const slideWidth = testimonialSlider.clientWidth;
+            testimonialSlider.style.transform = `translateX(-${slideIndex * slideWidth}px)`;
+            
+            // Update dots
+            dots.forEach(dot => {
+                const dotIndex = parseInt(dot.getAttribute('data-slide'));
+                dot.classList.toggle('active', dotIndex === slideIndex);
+            });
+            
+            currentSlide = slideIndex;
+        }
+
+        // Update greeting based on time of day
+        function updateGreeting() {
+            const hour = new Date().getHours();
+            let greeting = '';
+            
+            if (hour < 12) greeting = 'Selamat pagi!';
+            else if (hour < 15) greeting = 'Selamat siang!';
+            else if (hour < 19) greeting = 'Selamat sore!';
+            else greeting = 'Selamat malam!';
+            
+            document.getElementById('greeting-text').textContent = greeting + ' Selamat berbelanja!';
+        }
+
+        // Main Initialization Function
+        function init() {
+            initConfig();
+            updateCartBadge();
+            renderProducts();
+            setupEventListeners();
+            updateGreeting();
+            
+            // Check for saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                themeToggle.innerHTML = savedTheme === 'dark' ? 
+                    '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            }
+            
+            // Initial testimonial position
+            goToTestimonial(0);
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
